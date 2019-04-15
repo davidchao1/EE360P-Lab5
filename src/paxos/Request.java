@@ -9,8 +9,15 @@ import java.io.Serializable;
  */
 public class Request implements Serializable {
     static final long serialVersionUID=1L;
+    public int proposal;
+    public Object value;
+    int sequence;
     // Your data here
-
+    public Request(int s,int p,Object v){
+        this.sequence = s;
+        this.proposal = p;
+        this.value=v;
+    }
 
     // Your constructor and methods here
 }

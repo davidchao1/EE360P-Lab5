@@ -8,7 +8,16 @@ import java.io.Serializable;
  */
 public class Response implements Serializable {
     static final long serialVersionUID=2L;
+    public boolean ack;
+    public int proposal;
+    public Object value;
     // your data here
+
+    public Response(boolean a,int p,Object v){
+        this.ack = a;
+        this.proposal = p;
+        this.value = v;
+    }
 
 
     // Your constructor and methods here

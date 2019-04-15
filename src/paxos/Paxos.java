@@ -2,6 +2,8 @@ package paxos;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 import java.rmi.registry.Registry;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -20,7 +22,12 @@ public class Paxos implements PaxosRMI, Runnable{
 
     AtomicBoolean dead;// for testing
     AtomicBoolean unreliable;// for testing
+    int current = 1;
+    int sequence;
+    Object value;
+    Map<Integer, instance> instances = new ConcurrentHashMap<Integer, instance>();
 
+    Map<Integer, Object> vals = new ConcurrentHashMap<Integer, Object>();
     // Your data here
 
 
@@ -29,6 +36,20 @@ public class Paxos implements PaxosRMI, Runnable{
      * The hostnames of all the Paxos peers (including this one)
      * are in peers[]. The ports are in ports[].
      */
+
+    private class instance{
+        Object value;
+        State state;
+        int high;
+        int low;
+        public instance(){
+            high = Integer.MIN_VALUE;
+            low = Integer.MAX_VALUE;
+            state = State.Pending;
+            value = null;
+        }
+
+    }
     public Paxos(int me, String[] peers, int[] ports){
 
         this.me = me;
@@ -37,9 +58,8 @@ public class Paxos implements PaxosRMI, Runnable{
         this.mutex = new ReentrantLock();
         this.dead = new AtomicBoolean(false);
         this.unreliable = new AtomicBoolean(false);
-
+        this.current = this.current++;
         // Your initialization code here
-
 
         // register peers, do not modify this part
         try{
@@ -107,11 +127,20 @@ public class Paxos implements PaxosRMI, Runnable{
      */
     public void Start(int seq, Object value){
         // Your code here
+        this.sequence = seq;
+        this.value = value;
+        vals.put(seq,value);
+        Thread t = new Thread(this);
+        t.run();
     }
 
     @Override
     public void run(){
         //Your code here
+        int sequence = this.sequence;
+        Object val =this.vals.get(sequence);
+
+
     }
 
     // RMI handler
