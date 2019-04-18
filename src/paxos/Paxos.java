@@ -5,6 +5,7 @@ import java.rmi.registry.Registry;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -12,21 +13,20 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Paxos implements PaxosRMI, Runnable{
 
-    ReentrantLock mutex;
+    ReentrantLock mutex = new ReentrantLock();
     String[] peers; // hostname
     int[] ports; // host port
     int me; // index into peers[]
 
     Registry registry;
     PaxosRMI stub;
-
+    int num_paxos;
     AtomicBoolean dead;// for testing
     AtomicBoolean unreliable;// for testing
-    int current = 1;
+    AtomicInteger current = new AtomicInteger(1);
     int sequence;
     Object value;
     Map<Integer, instance> instances = new ConcurrentHashMap<Integer, instance>();
-
     Map<Integer, Object> vals = new ConcurrentHashMap<Integer, Object>();
     // Your data here
 
@@ -40,14 +40,23 @@ public class Paxos implements PaxosRMI, Runnable{
     private class instance{
         Object value;
         State state;
-        int high;
-        int low;
+        int highProposal;
+        int lowProposal;
         public instance(){
-            high = Integer.MIN_VALUE;
-            low = Integer.MAX_VALUE;
+            highProposal = Integer.MIN_VALUE;
+            lowProposal = Integer.MAX_VALUE;
             state = State.Pending;
             value = null;
         }
+    }
+    private instance getInstance(int seq) {
+        mutex.lock();
+        if(!instances.containsKey(seq)) {
+            instance inst = new instance();
+            instances.put(seq, inst);
+        }
+        mutex.unlock();
+        return instances.get(seq);
 
     }
     public Paxos(int me, String[] peers, int[] ports){
@@ -58,7 +67,8 @@ public class Paxos implements PaxosRMI, Runnable{
         this.mutex = new ReentrantLock();
         this.dead = new AtomicBoolean(false);
         this.unreliable = new AtomicBoolean(false);
-        this.current = this.current++;
+        this.num_paxos= peers.length;
+
         // Your initialization code here
 
         // register peers, do not modify this part
@@ -139,17 +149,83 @@ public class Paxos implements PaxosRMI, Runnable{
         //Your code here
         int sequence = this.sequence;
         Object val =this.vals.get(sequence);
+        while(this.getInstance(sequence).state != State.Decided){
+            Response proposalResponse = sendPrepare(sequence,val);
+            if(proposalResponse.majority){
+                Request acceptRequest = new Request(sequence, proposalResponse.proposal, proposalResponse.value);
+                if(sendAccept(acceptRequest)){
+                    sendDecide(acceptRequest);
+                }
+            }
+        }
+    }
+    public Response sendPrepare(int seq,Object value){
+        instance inst = this.getInstance(seq);
+        Object val = value;
+        int accepted = 0;
+        int numAccepted = inst.highProposal;
+        Request prepareRequest = createprepareRequest();
+        int ProposalSum = prepareRequest.proposal;
 
+        for(int i =0;i<this.peers.length;i++) {
+            Response prepareResponse;
+            if (this.me == i) {
+                prepareResponse = this.Prepare(prepareRequest);
+                // Proposal to peers
+            } else {
+                prepareResponse = this.Call("Prepare", prepareRequest, i);
+            }
+            if(prepareResponse!=null&&prepareResponse.ack){
+                accepted++;
+                if(prepareResponse.proposal>numAccepted){
+                    numAccepted = prepareResponse.proposal;
+                    val = prepareResponse.value;
+                }
+            }
+        }
+        Response proposalResponse = new Response();
+        if(accepted>=this.num_paxos/2+1){
+            proposalResponse.majority = true;
+            proposalResponse.proposal = ProposalSum;			// used to send accept(n, v')
+            proposalResponse.value = val;
+        }
+        return proposalResponse;
 
     }
+    public Request createprepareRequest(){
+        Request r = new Request();
+        return r;
+    }
+    public boolean sendAccept(Request accept){
 
+    }
+    public void sendDecide(Request decide){
+
+    }
     // RMI handler
     public Response Prepare(Request req){
         // your code here
-
+        Response prepareResponse = new Response();
+        instance t = this.getInstance(req.sequence);
+        if(req.proposal>t.highProposal){
+            t.highProposal = req.proposal;
+            if(t.value==null) {
+                t.value = req.value;
+            }
+            prepareResponse.value = t.value;
+            prepareResponse.seq = req.sequence;
+            prepareResponse.proposal = req.proposal;
+            prepareResponse.ack = true;
+        }else{
+            prepareResponse.value = t.value;
+            prepareResponse.proposal = t.highProposal;
+        }
+        return prepareResponse;
     }
 
     public Response Accept(Request req){
+        Response acceptReponse = new Response();
+
         // your code here
 
     }
