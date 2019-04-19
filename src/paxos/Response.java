@@ -9,14 +9,22 @@ import java.io.Serializable;
 public class Response implements Serializable {
     static final long serialVersionUID=2L;
     public boolean ack;
+    public boolean majority;
     public int proposal;
     public Object value;
     // your data here
-
+    public int seq;
     public Response(boolean a,int p,Object v){
         this.ack = a;
         this.proposal = p;
         this.value = v;
+    }
+    public Response(){
+        this.ack = false;
+        this.proposal = Integer.MIN_VALUE;
+        this.seq = -1;
+        this.value = null;
+        this.majority = false;
     }
 
 
