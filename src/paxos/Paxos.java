@@ -38,15 +38,19 @@ public class Paxos implements PaxosRMI, Runnable{
      */
 
     private class instance{
-        Object value;
+        Object value_accept;
         State state;
+        int num_accept;
+        int num_prepare;
         int highProposal;
         int lowProposal;
         public instance(){
             highProposal = Integer.MIN_VALUE;
             lowProposal = Integer.MAX_VALUE;
             state = State.Pending;
-            value = null;
+            value_accept = null;
+            num_accept = 0;
+            num_prepare = 0;
         }
     }
     private instance getInstance(int seq) {
