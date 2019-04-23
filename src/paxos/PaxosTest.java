@@ -30,7 +30,7 @@ public class PaxosTest {
     }
 
     private void waitn(Paxos[] pxa, int seq, int wanted){
-        int to = 10;
+        int to = 1000;
         for(int i = 0; i < 30; i++){
             if(ndecided(pxa, seq) >= wanted){
                 break;

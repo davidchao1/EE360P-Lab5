@@ -17,7 +17,7 @@ public class Paxos implements PaxosRMI, Runnable{
     String[] peers; // hostname
     int[] ports; // host port
     int me; // index into peers[]
-
+    AtomicInteger n = new AtomicInteger(1);
     Registry registry;
     PaxosRMI stub;
     int num_paxos;
@@ -29,7 +29,7 @@ public class Paxos implements PaxosRMI, Runnable{
     Map<Integer, instance> instances = new ConcurrentHashMap<Integer, instance>();
     Map<Integer, Object> vals = new ConcurrentHashMap<Integer, Object>();
     // Your data here
-
+    int[]finished;
 
     /**
      * Call the constructor to create a Paxos peer.
@@ -40,16 +40,22 @@ public class Paxos implements PaxosRMI, Runnable{
     private class instance{
         Object value_accept;
         State state;
-        int num_accept;
+        int highPrepare;
+        int high_accept;
+
+
         int num_prepare;
-        int highProposal;
         int lowProposal;
+
+
+
+
         public instance(){
-            highProposal = Integer.MIN_VALUE;
+            highPrepare = Integer.MIN_VALUE;
             lowProposal = Integer.MAX_VALUE;
             state = State.Pending;
             value_accept = null;
-            num_accept = 0;
+            high_accept = 0;
             num_prepare = 0;
         }
     }
@@ -72,7 +78,10 @@ public class Paxos implements PaxosRMI, Runnable{
         this.dead = new AtomicBoolean(false);
         this.unreliable = new AtomicBoolean(false);
         this.num_paxos= peers.length;
-
+        this.finished = new int[peers.length];
+        for(int i = 0 ;i<peers.length;i++){
+            finished[i] = -2;
+        }
         // Your initialization code here
 
         // register peers, do not modify this part
@@ -145,7 +154,7 @@ public class Paxos implements PaxosRMI, Runnable{
         this.value = value;
         vals.put(seq,value);
         Thread t = new Thread(this);
-        t.run();
+        t.start();
     }
 
     @Override
@@ -167,9 +176,10 @@ public class Paxos implements PaxosRMI, Runnable{
         instance inst = this.getInstance(seq);
         Object val = value;
         int accepted = 0;
-        int numAccepted = inst.highProposal;
-        Request prepareRequest = createprepareRequest();
-        int ProposalSum = prepareRequest.proposal;
+        int numAccepted = inst.highPrepare;
+
+        Request prepareRequest = createprepareRequest(seq,val,inst);
+        //int ProposalSum = prepareRequest.proposal;
 
         for(int i =0;i<this.peers.length;i++) {
             Response prepareResponse;
@@ -179,7 +189,7 @@ public class Paxos implements PaxosRMI, Runnable{
             } else {
                 prepareResponse = this.Call("Prepare", prepareRequest, i);
             }
-            if(prepareResponse!=null&&prepareResponse.ack){
+            if(prepareResponse!=null&&prepareResponse.accepted){
                 accepted++;
                 if(prepareResponse.proposal>numAccepted){
                     numAccepted = prepareResponse.proposal;
@@ -190,52 +200,103 @@ public class Paxos implements PaxosRMI, Runnable{
         Response proposalResponse = new Response();
         if(accepted>=this.num_paxos/2+1){
             proposalResponse.majority = true;
-            proposalResponse.proposal = ProposalSum;			// used to send accept(n, v')
+            proposalResponse.proposal = numAccepted;			// used to send accept(n, v')
             proposalResponse.value = val;
         }
         return proposalResponse;
 
     }
-    public Request createprepareRequest(){
-        Request r = new Request();
+
+    public Request createprepareRequest(int sequence, Object val, instance inst){
+        int proposal = 0;
+        if(inst.highPrepare == Integer.MIN_VALUE){
+            proposal = this.me+1;
+        }else{
+            proposal = inst.highPrepare / this.num_paxos+1 * this.num_paxos + this.me+1;
+        }
+        Request r = new Request(sequence,proposal,val);
         return r;
     }
     public boolean sendAccept(Request accept){
-
+        Object val = accept.value;
+        int proposal = accept.proposal;
+        int numAccepted = 0;
+        for(int i = 0;i<peers.length;i++){
+            Response accResp;
+            if(i==this.me){
+                accResp = this.Accept(accept);
+            }else{
+                accResp = this.Call("Accept",accept,i);
+            }
+            if(accResp!=null&&accResp.accepted){
+                numAccepted++;
+            }
+        }
+        if(numAccepted>=this.num_paxos/2+1){
+            return true;
+        }
+        return false;
     }
     public void sendDecide(Request decide){
+        instance inst = this.instances.get(decide.sequence);		// key should exist
+        inst.high_accept = decide.proposal;
+        inst.highPrepare = decide.proposal;
+        inst.value_accept = decide.value;
+        inst.state = State.Decided;
+        for(int i =0;i<this.num_paxos;i++){
+            Response decideResp;
+            if(i!=this.me){
+                Request request = new Request();
+                request.sequence = decide.sequence;
+                request.proposal = decide.proposal;
+                request.value = decide.value;
+                request.me = this.me;
+                decideResp = this.Call("Decide",request,i);
 
+            }
+
+        }
     }
     // RMI handler
     public Response Prepare(Request req){
         // your code here
-        Response prepareResponse = new Response();
         instance t = this.getInstance(req.sequence);
-        if(req.proposal>t.highProposal){
-            t.highProposal = req.proposal;
-            if(t.value==null) {
-                t.value = req.value;
+        if(req.proposal>t.highPrepare){
+            t.highPrepare = req.proposal;
+            if(t.value_accept==null){
+                t.value_accept = req.value;
             }
-            prepareResponse.value = t.value;
-            prepareResponse.seq = req.sequence;
-            prepareResponse.proposal = req.proposal;
-            prepareResponse.ack = true;
+            Response prepareResponse = new Response(true,t.highPrepare,t.value_accept,true);
+            return prepareResponse;
         }else{
-            prepareResponse.value = t.value;
-            prepareResponse.proposal = t.highProposal;
+            Response prepareResponse = new Response(false,0,null,true);
+            return prepareResponse;
         }
-        return prepareResponse;
     }
 
     public Response Accept(Request req){
-        Response acceptReponse = new Response();
-
-        // your code here
+        instance t = this.getInstance(req.sequence);
+        if(req.proposal>=t.highPrepare){
+            t.highPrepare = req.proposal;
+            t.num_prepare = req.proposal;
+            t.value_accept = req.value;
+            Response prepareResponse = new Response(true,t.highPrepare,t.value_accept,false);
+            return prepareResponse;
+        }else{
+            Response prepareResponse = new Response(false,0,null,false);
+            return prepareResponse;
+        }
 
     }
 
     public Response Decide(Request req){
         // your code here
+        instance inst = this.getInstance(req.sequence);
+        inst.highPrepare = req.proposal;
+        inst.high_accept = req.proposal;
+        inst.value_accept = req.value;
+        inst.state = State.Decided;
+        return new Response();
 
     }
 
@@ -257,6 +318,7 @@ public class Paxos implements PaxosRMI, Runnable{
      */
     public int Max(){
         // Your code here
+        return Integer.MAX_VALUE;
     }
 
     /**
@@ -289,7 +351,7 @@ public class Paxos implements PaxosRMI, Runnable{
      */
     public int Min(){
         // Your code here
-
+        return 0;
     }
 
 
@@ -303,7 +365,13 @@ public class Paxos implements PaxosRMI, Runnable{
      */
     public retStatus Status(int seq){
         // Your code here
-
+        if(this.instances.containsKey(seq)){
+            instance inst = instances.get(seq);
+            return new retStatus(inst.state, inst.value_accept);
+        }else {
+            // sequence number doesn't exist yet, so state is pending.
+            return new retStatus(State.Pending, null);
+        }
     }
 
     /**

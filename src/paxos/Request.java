@@ -10,15 +10,17 @@ import java.io.Serializable;
 public class Request implements Serializable {
     static final long serialVersionUID=1L;
     public int proposal;
-    public Object value;
+    public Object value = new Object();
     int sequence;
     public boolean proposalAccept = false;
+    int me;
     // Your data here
     public Request(int s,int p,Object v){
         this.sequence = s;
         this.proposal = p;
         this.value=v;
     }
+    public Request(){}
 
     // Your constructor and methods here
 }

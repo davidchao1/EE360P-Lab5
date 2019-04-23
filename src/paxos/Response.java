@@ -8,24 +8,20 @@ import java.io.Serializable;
  */
 public class Response implements Serializable {
     static final long serialVersionUID=2L;
-    public boolean ack;
-    public boolean majority;
+    public boolean accepted;
+    public boolean majority = false;
     public int proposal;
-    public Object value;
+    public Object value = new Object();
+    boolean prepare;
     // your data here
     public int seq;
-    public Response(boolean a,int p,Object v){
-        this.ack = a;
+    public Response(boolean a,int p,Object v,boolean messageType){
+        this.accepted = a;
         this.proposal = p;
         this.value = v;
+        this.prepare = messageType;
     }
-    public Response(){
-        this.ack = false;
-        this.proposal = Integer.MIN_VALUE;
-        this.seq = -1;
-        this.value = null;
-        this.majority = false;
-    }
+    public Response(){}
 
 
     // Your constructor and methods here
