@@ -149,8 +149,10 @@ public class Paxos implements PaxosRMI, Runnable{
      */
     public void Start(int seq, Object value){
         // Your code here
+    	mutex.lock();
         this.sequence = seq;
         this.value = value;
+        mutex.unlock();
         vals.put(seq,value);
         Thread t = new Thread(this);
         t.start();
@@ -377,9 +379,9 @@ public class Paxos implements PaxosRMI, Runnable{
             }
         }
         for(int key : instances.keySet()){
-//            if(key<min&&instances.get(key).state == State.Decided){
-//                instances.remove(key);
-//            }
+            if(key<min&&instances.get(key).state == State.Decided){
+                instances.remove(key);
+            }
 
         }
         return min + 1;
