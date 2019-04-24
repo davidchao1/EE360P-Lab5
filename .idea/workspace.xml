@@ -3,13 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="84e3b96a-0b04-4455-ad70-585dc5ca8274" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/EE360P-Lab5/.gitignore" afterPath="$PROJECT_DIR$/out/production/EE360P-Lab5/.gitignore" />
       <change beforePath="$PROJECT_DIR$/out/production/EE360P-Lab5/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/EE360P-Lab5/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/EE360P-Lab5/paxos/Response.class" afterPath="$PROJECT_DIR$/out/production/EE360P-Lab5/paxos/Response.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/EE360P-Lab5/paxos/Paxos$retStatus.class" afterPath="$PROJECT_DIR$/out/production/EE360P-Lab5/paxos/Paxos$retStatus.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/EE360P-Lab5/paxos/Paxos.class" afterPath="$PROJECT_DIR$/out/production/EE360P-Lab5/paxos/Paxos.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/EE360P-Lab5/paxos/PaxosTest.class" afterPath="$PROJECT_DIR$/out/production/EE360P-Lab5/paxos/PaxosTest.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/EE360P-Lab5/paxos/Request.class" afterPath="$PROJECT_DIR$/out/production/EE360P-Lab5/paxos/Request.class" />
       <change beforePath="$PROJECT_DIR$/src/paxos/Paxos.java" afterPath="$PROJECT_DIR$/src/paxos/Paxos.java" />
       <change beforePath="$PROJECT_DIR$/src/paxos/PaxosTest.java" afterPath="$PROJECT_DIR$/src/paxos/PaxosTest.java" />
       <change beforePath="$PROJECT_DIR$/src/paxos/Request.java" afterPath="$PROJECT_DIR$/src/paxos/Request.java" />
-      <change beforePath="$PROJECT_DIR$/src/paxos/Response.java" afterPath="$PROJECT_DIR$/src/paxos/Response.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,7 +25,7 @@
       <file leaf-file-name="PaxosRMI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/paxos/PaxosRMI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
+            <state relative-caret-position="290">
               <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -36,7 +37,7 @@
       <file leaf-file-name="Response.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/paxos/Response.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
+            <state relative-caret-position="268">
               <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding />
             </state>
@@ -46,9 +47,11 @@
       <file leaf-file-name="PaxosTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/paxos/PaxosTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5167">
-              <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="-1562">
+              <caret line="187" column="5" lean-forward="false" selection-start-line="187" selection-start-column="5" selection-end-line="187" selection-end-column="5" />
+              <folding>
+                <element signature="method#TestDeaf#0;class#PaxosTest#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,20 +59,18 @@
       <file leaf-file-name="Paxos.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/paxos/Paxos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="266" column="43" lean-forward="false" selection-start-line="266" selection-start-column="43" selection-end-line="266" selection-end-column="43" />
+            <state relative-caret-position="1058">
+              <caret line="417" column="18" lean-forward="false" selection-start-line="417" selection-start-column="12" selection-end-line="417" selection-end-column="18" />
               <folding>
-                <element signature="e#960#979#0" expanded="true" />
-                <element signature="e#1036#1053#0" expanded="true" />
-                <element signature="method#sendAccept#0;class#Paxos#0" expanded="false" />
+                <element signature="method#Prepare#0;class#Paxos#0" expanded="false" />
                 <element signature="method#Accept#0;class#Paxos#0" expanded="false" />
                 <element signature="method#Kill#0;class#Paxos#0" expanded="false" />
-                <element signature="e#13339#13340#0" expanded="true" />
-                <element signature="e#13377#13378#0" expanded="true" />
-                <element signature="e#13411#13412#0" expanded="true" />
-                <element signature="e#13458#13459#0" expanded="true" />
-                <element signature="e#13494#13495#0" expanded="true" />
-                <element signature="e#13538#13539#0" expanded="true" />
+                <element signature="e#14173#14174#0" expanded="true" />
+                <element signature="e#14211#14212#0" expanded="true" />
+                <element signature="e#14245#14246#0" expanded="true" />
+                <element signature="e#14292#14293#0" expanded="true" />
+                <element signature="e#14328#14329#0" expanded="true" />
+                <element signature="e#14372#14373#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -78,8 +79,8 @@
       <file leaf-file-name="Request.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/paxos/Request.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+            <state relative-caret-position="280">
+              <caret line="16" column="17" lean-forward="false" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -95,13 +96,23 @@
       <find>Prepare</find>
       <find>pending</find>
       <find>sequence</find>
-      <find>status</find>
-      <find>instances</find>
       <find>getInstance</find>
       <find>getIns</find>
       <find>remove</find>
       <find>me</find>
       <find>this.me</find>
+      <find>this.fin</find>
+      <find>req.fin</find>
+      <find>status</find>
+      <find>Status</find>
+      <find>instances.r</find>
+      <find>Min()</find>
+      <find>instances</find>
+      <find>lock</find>
+      <find>mut</find>
+      <find>run</find>
+      <find>done</find>
+      <find>this.s</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -116,10 +127,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Paxos-master/paxos/Paxos.java" />
-        <option value="$PROJECT_DIR$/src/paxos/PaxosTest.java" />
-        <option value="$PROJECT_DIR$/src/paxos/Request.java" />
         <option value="$PROJECT_DIR$/src/paxos/Response.java" />
+        <option value="$PROJECT_DIR$/src/paxos/Request.java" />
         <option value="$PROJECT_DIR$/src/paxos/Paxos.java" />
+        <option value="$PROJECT_DIR$/src/paxos/PaxosTest.java" />
       </list>
     </option>
   </component>
@@ -150,6 +161,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -172,10 +187,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -220,6 +231,31 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+    </configuration>
+    <configuration name="PaxosTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="paxos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="EE360P-Lab5" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="paxos" />
+      <option name="MAIN_CLASS_NAME" value="paxos.PaxosTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
     </configuration>
     <configuration name="PaxosTest.TestBasic" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
@@ -356,16 +392,18 @@
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="JUnit.PaxosTest.TestBasic" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.PaxosTest.TestDeaf" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.PaxosTest.TestForget" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.PaxosTest" />
     </list>
     <recent_temporary>
-      <list size="3">
+      <list size="4">
         <item index="0" class="java.lang.String" itemvalue="JUnit.PaxosTest.TestForget" />
         <item index="1" class="java.lang.String" itemvalue="JUnit.PaxosTest.TestDeaf" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.PaxosTest.TestBasic" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.PaxosTest" />
       </list>
     </recent_temporary>
   </component>
@@ -384,43 +422,44 @@
       <updated>1555358144489</updated>
       <workItem from="1555358148692" duration="10323000" />
       <workItem from="1555970620055" duration="13383000" />
+      <workItem from="1556073753168" duration="7035000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PaxosTest_TestBasic - 2019.04.22 at 20h 38m 39s.xml">
-      <configuration name="PaxosTest.TestBasic" configurationId="JUnit" />
+    <history-entry file="PaxosTest_TestForget - 2019.04.23 at 23h 24m 52s.xml">
+      <configuration name="PaxosTest.TestForget" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PaxosTest_TestBasic - 2019.04.22 at 20h 39m 13s.xml">
-      <configuration name="PaxosTest.TestBasic" configurationId="JUnit" />
+    <history-entry file="PaxosTest_TestForget - 2019.04.23 at 23h 27m 29s.xml">
+      <configuration name="PaxosTest.TestForget" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PaxosTest_TestBasic - 2019.04.22 at 20h 41m 23s.xml">
-      <configuration name="PaxosTest.TestBasic" configurationId="JUnit" />
+    <history-entry file="PaxosTest_TestForget - 2019.04.23 at 23h 28m 48s.xml">
+      <configuration name="PaxosTest.TestForget" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PaxosTest_TestBasic - 2019.04.22 at 20h 42m 58s.xml">
-      <configuration name="PaxosTest.TestBasic" configurationId="JUnit" />
+    <history-entry file="PaxosTest_TestForget - 2019.04.23 at 23h 29m 04s.xml">
+      <configuration name="PaxosTest.TestForget" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PaxosTest_TestBasic - 2019.04.22 at 20h 43m 49s.xml">
-      <configuration name="PaxosTest.TestBasic" configurationId="JUnit" />
+    <history-entry file="PaxosTest_TestForget - 2019.04.23 at 23h 29m 14s.xml">
+      <configuration name="PaxosTest.TestForget" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PaxosTest_TestBasic - 2019.04.22 at 20h 44m 53s.xml">
-      <configuration name="PaxosTest.TestBasic" configurationId="JUnit" />
+    <history-entry file="PaxosTest_TestForget - 2019.04.23 at 23h 29m 35s.xml">
+      <configuration name="PaxosTest.TestForget" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PaxosTest_TestBasic - 2019.04.22 at 20h 46m 12s.xml">
-      <configuration name="PaxosTest.TestBasic" configurationId="JUnit" />
+    <history-entry file="PaxosTest_TestForget - 2019.04.23 at 23h 31m 13s.xml">
+      <configuration name="PaxosTest.TestForget" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PaxosTest_TestBasic - 2019.04.22 at 20h 46m 22s.xml">
-      <configuration name="PaxosTest.TestBasic" configurationId="JUnit" />
+    <history-entry file="PaxosTest_TestForget - 2019.04.23 at 23h 35m 26s.xml">
+      <configuration name="PaxosTest.TestForget" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PaxosTest_TestDeaf - 2019.04.22 at 20h 47m 07s.xml">
-      <configuration name="PaxosTest.TestDeaf" configurationId="JUnit" />
+    <history-entry file="PaxosTest_TestForget - 2019.04.23 at 23h 36m 25s.xml">
+      <configuration name="PaxosTest.TestForget" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PaxosTest_TestForget - 2019.04.22 at 20h 50m 07s.xml">
+    <history-entry file="PaxosTest_TestForget - 2019.04.23 at 23h 39m 02s.xml">
       <configuration name="PaxosTest.TestForget" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23706000" />
+    <option name="totallyTimeSpent" value="30741000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3232" height="1732" extended-state="6" />
@@ -434,25 +473,25 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25453368" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25906736" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,55 +504,43 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/paxos/Paxos.java</url>
-          <line>293</line>
+          <url>file://$PROJECT_DIR$/src/paxos/PaxosTest.java</url>
+          <line>47</line>
           <properties />
-          <option name="timeStamp" value="30" />
+          <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/paxos/Paxos.java</url>
-          <line>298</line>
+          <url>file://$PROJECT_DIR$/src/paxos/PaxosTest.java</url>
+          <line>28</line>
           <properties />
-          <option name="timeStamp" value="31" />
+          <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/paxos/Paxos.java</url>
-          <line>169</line>
+          <url>file://$PROJECT_DIR$/src/paxos/PaxosTest.java</url>
+          <line>229</line>
           <properties />
-          <option name="timeStamp" value="33" />
+          <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/paxos/Paxos.java</url>
-          <line>248</line>
+          <url>file://$PROJECT_DIR$/src/paxos/PaxosTest.java</url>
+          <line>180</line>
           <properties />
-          <option name="timeStamp" value="38" />
+          <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/paxos/Paxos.java</url>
-          <line>252</line>
+          <url>file://$PROJECT_DIR$/src/paxos/PaxosTest.java</url>
+          <line>182</line>
           <properties />
-          <option name="timeStamp" value="41" />
+          <option name="timeStamp" value="76" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/paxos/Paxos.java</url>
-          <line>165</line>
+          <url>file://$PROJECT_DIR$/src/paxos/PaxosTest.java</url>
+          <line>184</line>
           <properties />
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/paxos/Paxos.java</url>
-          <line>186</line>
-          <properties />
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/paxos/Paxos.java</url>
-          <line>199</line>
-          <properties />
-          <option name="timeStamp" value="47" />
+          <option name="timeStamp" value="77" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="48" />
+      <option name="time" value="79" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -528,11 +555,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/paxos/Response.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/paxos/Paxos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10640">
+          <caret line="266" column="43" lean-forward="false" selection-start-line="266" selection-start-column="43" selection-end-line="266" selection-end-column="43" />
+          <folding>
+            <element signature="method#Prepare#0;class#Paxos#0" expanded="false" />
+            <element signature="method#Accept#0;class#Paxos#0" expanded="false" />
+            <element signature="method#Kill#0;class#Paxos#0" expanded="false" />
+            <element signature="e#14173#14174#0" expanded="true" />
+            <element signature="e#14211#14212#0" expanded="true" />
+            <element signature="e#14245#14246#0" expanded="true" />
+            <element signature="e#14292#14293#0" expanded="true" />
+            <element signature="e#14328#14329#0" expanded="true" />
+            <element signature="e#14372#14373#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/paxos/Request.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/paxos/PaxosTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3040">
+          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding>
+            <element signature="method#TestDeaf#0;class#PaxosTest#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/paxos/PaxosRMI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/paxos/PaxosTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3160">
           <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#TestDeaf#0;class#PaxosTest#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -565,17 +648,15 @@
         <state relative-caret-position="6600">
           <caret line="191" column="32" lean-forward="false" selection-start-line="191" selection-start-column="32" selection-end-line="191" selection-end-column="32" />
           <folding>
-            <element signature="e#960#979#0" expanded="true" />
-            <element signature="e#1036#1053#0" expanded="true" />
-            <element signature="method#sendAccept#0;class#Paxos#0" expanded="false" />
+            <element signature="method#Prepare#0;class#Paxos#0" expanded="false" />
             <element signature="method#Accept#0;class#Paxos#0" expanded="false" />
             <element signature="method#Kill#0;class#Paxos#0" expanded="false" />
-            <element signature="e#13339#13340#0" expanded="true" />
-            <element signature="e#13377#13378#0" expanded="true" />
-            <element signature="e#13411#13412#0" expanded="true" />
-            <element signature="e#13458#13459#0" expanded="true" />
-            <element signature="e#13494#13495#0" expanded="true" />
-            <element signature="e#13538#13539#0" expanded="true" />
+            <element signature="e#14173#14174#0" expanded="true" />
+            <element signature="e#14211#14212#0" expanded="true" />
+            <element signature="e#14245#14246#0" expanded="true" />
+            <element signature="e#14292#14293#0" expanded="true" />
+            <element signature="e#14328#14329#0" expanded="true" />
+            <element signature="e#14372#14373#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -594,9 +675,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/src/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="194" column="102" lean-forward="false" selection-start-line="194" selection-start-column="102" selection-end-line="194" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/src/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/paxos/PaxosRMI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
+        <state relative-caret-position="290">
           <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -604,33 +700,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/src/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
+    <entry file="jar://$PROJECT_DIR$/src/junit-4.12.jar!/org/junit/runners/model/FrameworkMethod.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="194" column="102" lean-forward="false" selection-start-line="194" selection-start-column="102" selection-end-line="194" selection-end-column="102" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/src/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="263">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/paxos/Request.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+        <state relative-caret-position="280">
+          <caret line="16" column="17" lean-forward="false" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/paxos/Response.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
+        <state relative-caret-position="268">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
@@ -638,29 +726,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/paxos/Paxos.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="266" column="43" lean-forward="false" selection-start-line="266" selection-start-column="43" selection-end-line="266" selection-end-column="43" />
+        <state relative-caret-position="1058">
+          <caret line="417" column="18" lean-forward="false" selection-start-line="417" selection-start-column="12" selection-end-line="417" selection-end-column="18" />
           <folding>
-            <element signature="e#960#979#0" expanded="true" />
-            <element signature="e#1036#1053#0" expanded="true" />
-            <element signature="method#sendAccept#0;class#Paxos#0" expanded="false" />
+            <element signature="method#Prepare#0;class#Paxos#0" expanded="false" />
             <element signature="method#Accept#0;class#Paxos#0" expanded="false" />
             <element signature="method#Kill#0;class#Paxos#0" expanded="false" />
-            <element signature="e#13339#13340#0" expanded="true" />
-            <element signature="e#13377#13378#0" expanded="true" />
-            <element signature="e#13411#13412#0" expanded="true" />
-            <element signature="e#13458#13459#0" expanded="true" />
-            <element signature="e#13494#13495#0" expanded="true" />
-            <element signature="e#13538#13539#0" expanded="true" />
+            <element signature="e#14173#14174#0" expanded="true" />
+            <element signature="e#14211#14212#0" expanded="true" />
+            <element signature="e#14245#14246#0" expanded="true" />
+            <element signature="e#14292#14293#0" expanded="true" />
+            <element signature="e#14328#14329#0" expanded="true" />
+            <element signature="e#14372#14373#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/paxos/PaxosTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5167">
-          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="-1562">
+          <caret line="187" column="5" lean-forward="false" selection-start-line="187" selection-start-column="5" selection-end-line="187" selection-end-column="5" />
+          <folding>
+            <element signature="method#TestDeaf#0;class#PaxosTest#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

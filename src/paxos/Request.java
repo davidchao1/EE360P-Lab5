@@ -14,6 +14,7 @@ public class Request implements Serializable {
     int sequence;
     public boolean proposalAccept = false;
     int me;
+    int finished;
     // Your data here
     public Request(int s,int p,Object v){
         this.sequence = s;

@@ -74,13 +74,12 @@ public class Paxos implements PaxosRMI, Runnable{
         this.me = me;
         this.peers = peers;
         this.ports = ports;
-        this.mutex = new ReentrantLock();
         this.dead = new AtomicBoolean(false);
         this.unreliable = new AtomicBoolean(false);
         this.num_paxos= peers.length;
         this.finished = new int[peers.length];
         for(int i = 0 ;i<peers.length;i++){
-            finished[i] = -2;
+            finished[i] = -1;
         }
         // Your initialization code here
 
@@ -160,7 +159,12 @@ public class Paxos implements PaxosRMI, Runnable{
     @Override
     public void run(){
         //Your code here
+        mutex.lock();
         int sequence = this.sequence;
+        mutex.unlock();
+        if(this.Min()>sequence){
+            return;
+        }
         Object val =this.vals.get(sequence);
         while(this.getInstance(sequence).state != State.Decided){
             Response proposalResponse = sendPrepare(sequence,val);
@@ -251,7 +255,9 @@ public class Paxos implements PaxosRMI, Runnable{
                 request.proposal = decide.proposal;
                 request.value = decide.value;
                 request.me = this.me;
-                decideResp = this.Call("Decide",request,i);
+                request.finished  = this.finished[this.me];
+                //decideResp =
+                    this.Call("Decide",request,i);
 
             }
 
@@ -291,11 +297,15 @@ public class Paxos implements PaxosRMI, Runnable{
 
     public Response Decide(Request req){
         // your code here
+
         instance inst = this.getInstance(req.sequence);
         inst.highPrepare = req.proposal;
         inst.high_accept = req.proposal;
         inst.value_accept = req.value;
         inst.state = State.Decided;
+    //    Done(req.sequence);
+
+        this.finished[req.me] = req.finished;
         return new Response();
 
     }
@@ -307,7 +317,10 @@ public class Paxos implements PaxosRMI, Runnable{
      * see the comments for Min() for more explanation.
      */
     public void Done(int seq) {
-        // Your code here
+        if(seq > this.finished[this.me]) {
+            this.finished[this.me] = seq;
+        }
+
     }
 
 
@@ -318,7 +331,13 @@ public class Paxos implements PaxosRMI, Runnable{
      */
     public int Max(){
         // Your code here
-        return Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for(int key : instances.keySet()) {
+            if (key > max) {
+                max = key;
+            }
+        }
+        return max;
     }
 
     /**
@@ -351,7 +370,19 @@ public class Paxos implements PaxosRMI, Runnable{
      */
     public int Min(){
         // Your code here
-        return 0;
+        int min = this.finished[this.me];
+        for(int i = 0;i<finished.length;i++){
+            if(finished[i]<min){
+                min = finished[i];
+            }
+        }
+        for(int key : instances.keySet()){
+//            if(key<min&&instances.get(key).state == State.Decided){
+//                instances.remove(key);
+//            }
+
+        }
+        return min + 1;
     }
 
 
@@ -365,11 +396,13 @@ public class Paxos implements PaxosRMI, Runnable{
      */
     public retStatus Status(int seq){
         // Your code here
+        if(this.Min()>seq){
+            return new retStatus(State.Forgotten,null);
+        }
         if(this.instances.containsKey(seq)){
             instance inst = instances.get(seq);
             return new retStatus(inst.state, inst.value_accept);
         }else {
-            // sequence number doesn't exist yet, so state is pending.
             return new retStatus(State.Pending, null);
         }
     }

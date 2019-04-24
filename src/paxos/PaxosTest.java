@@ -30,7 +30,7 @@ public class PaxosTest {
     }
 
     private void waitn(Paxos[] pxa, int seq, int wanted){
-        int to = 1000;
+        int to = 100;
         for(int i = 0; i < 30; i++){
             if(ndecided(pxa, seq) >= wanted){
                 break;
@@ -177,11 +177,15 @@ public class PaxosTest {
         }
 
         pxa[0].Start(0,"00");
-        pxa[1].Start(1,"11");
-        pxa[2].Start(2,"22");
-        pxa[0].Start(6,"66");
-        pxa[1].Start(7,"77");
 
+        pxa[1].Start(1,"11");
+
+        pxa[2].Start(2,"22");
+
+        pxa[0].Start(6,"66");
+
+        pxa[1].Start(7,"77");
+     
         waitn(pxa, 0, npaxos);
         for(int i = 0; i < npaxos; i++){
             int m = pxa[i].Min();
