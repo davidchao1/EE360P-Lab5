@@ -70,7 +70,12 @@ public class Paxos implements PaxosRMI, Runnable{
 
     }
     public Paxos(int me, String[] peers, int[] ports){
-
+    	try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
         this.me = me;
         this.peers = peers;
         this.ports = ports;
