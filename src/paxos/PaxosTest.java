@@ -168,8 +168,14 @@ public class PaxosTest {
     public void TestForget(){
 
         final int npaxos = 6;
-        Paxos[] pxa = initPaxos(npaxos);
-
+        Paxos[] pxa = null;
+        try {
+        	pxa = initPaxos(npaxos);
+        } catch(Exception e) {
+        	System.out.println("hi");
+        } finally {
+        	//pxa = null;
+        
         System.out.println("Test: Forgetting ...");
 
         for(int i = 0; i < npaxos; i++){
@@ -231,7 +237,8 @@ public class PaxosTest {
         assertFalse("Min() did not advance after Done()", ok != true);
         System.out.println("... Passed");
         cleanup(pxa);
-
+        }
+        
     }
 
 }
