@@ -154,6 +154,9 @@ public class Paxos implements PaxosRMI, Runnable{
      */
     public void Start(int seq, Object value){
         // Your code here
+        if(Min()>seq){
+            return;
+        }
     	mutex.lock();
         this.sequence = seq;
         this.value = value;
@@ -169,9 +172,9 @@ public class Paxos implements PaxosRMI, Runnable{
         mutex.lock();
         int sequence = this.sequence;
         mutex.unlock();
-        if(this.Min()>sequence){
-            return;
-        }
+//        if(this.Min()>sequence){
+//            return;
+//        }
         Object val =this.vals.get(sequence);
         while(this.getInstance(sequence).state != State.Decided){
             Response proposalResponse = sendPrepare(sequence,val);
@@ -211,7 +214,7 @@ public class Paxos implements PaxosRMI, Runnable{
         Response proposalResponse = new Response();
         if(accepted>=this.num_paxos/2+1){
             proposalResponse.majority = true;
-            proposalResponse.proposal = numAccepted;			// used to send accept(n, v')
+            proposalResponse.proposal = numAccepted;
             proposalResponse.value = val;
         }
         return proposalResponse;
@@ -249,7 +252,7 @@ public class Paxos implements PaxosRMI, Runnable{
         return false;
     }
     public void sendDecide(Request decide){
-        instance inst = this.instances.get(decide.sequence);		// key should exist
+        instance inst = this.instances.get(decide.sequence);
         inst.high_accept = decide.proposal;
         inst.highPrepare = decide.proposal;
         inst.value_accept = decide.value;

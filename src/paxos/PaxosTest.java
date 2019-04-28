@@ -178,20 +178,21 @@ public class PaxosTest {
 			}
 
 			pxa[0].Start(0, "00");
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			pxa[1].Start(1, "11");
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			pxa[2].Start(2, "22");
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			pxa[0].Start(6, "66");
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			pxa[1].Start(7, "77");
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			waitn(pxa, 0, npaxos);
 			for (int i = 0; i < npaxos; i++) {
 				int m = pxa[i].Min();
 				assertFalse("Wrong Min() " + m + "; expected 0", m != 0);
 			}
+			//System.out.println("Part 1 passed");
 
 			waitn(pxa, 1, npaxos);
 			for (int i = 0; i < npaxos; i++) {
